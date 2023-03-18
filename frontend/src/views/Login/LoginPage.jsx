@@ -20,11 +20,15 @@ const LoginPage = () => {
             password: password_input,
         }).then((response) => {
             if (response.data.error) {
+                console.log("Login got pindot");
                 return setShowError(true);
             }
-            setShowError(false);
-            localStorage.setItem("token", response.data.message[0].adminID); 
-            navigate("../dashboard");
+            else{
+                setShowError(false);
+                localStorage.setItem("token", response.data.message[0].adminID); 
+                navigate("../dashboard");
+            }
+            
         }).catch((error) => {
             
         })

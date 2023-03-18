@@ -85,5 +85,23 @@ app.get('/verify/:id', (req, res) => {
     )
     console.log(id)
 })
+app.get('/', (req, res) => {
+
+    db.query(
+        "SELECT * FROM tbl_admin ",
+        (err, result) => {
+            if (err) {
+                res.send(err.sqlMessage);
+            }
+            else {
+                return res.send({
+                        status: 404,
+                        message: result
+                })
+
+        }
+    }
+    )
+})
 
 app.listen("3001")

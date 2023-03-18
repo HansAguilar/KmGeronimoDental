@@ -10,7 +10,6 @@ function ProtectedRoutes() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                
                 const response = await axios.get(`http://localhost:3001/verify/${token}`);
                 if (response.data.message === "verified") {
                     setAuth(true)
