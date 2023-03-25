@@ -3,8 +3,7 @@ import Header from '../components/Header'
 import SideBar from '../components/SideBar'
 
 import notFound404Img from '../assets/images/page404.svg';
-import { Link, NavLink } from 'react-router-dom';
-import Dashboard from './Dashboard';
+import { Link } from 'react-router-dom';
 
 const PageNotFound = () => {
     return (
@@ -14,7 +13,6 @@ const PageNotFound = () => {
                 <div className='flex-2'>
                     <SideBar />
                 </div>
-
                 {/* PAGE NOT FOUND CONTENT */}
                 <div className='w-full flex flex-col justify-center items-center gap-2'>
                     <img src={notFound404Img} alt="404 Page Not Found" width={500} />

@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import Axios from 'axios';
 import Header from "../../components/Header";
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 const LoginPage = () => {
     localStorage.removeItem("token")
+    localStorage.removeItem("username")
     const navigate = useNavigate();
 
     const [username_input, setUsername] = useState("");
@@ -20,12 +21,12 @@ const LoginPage = () => {
             password: password_input,
         }).then((response) => {
             if (response.data.error) {
-                console.log("Login got pindot");
                 return setShowError(true);
             }
             else{
                 setShowError(false);
                 localStorage.setItem("token", response.data.message[0].adminID); 
+                localStorage.setItem("username", response.data.message[0].username); 
                 navigate("../dashboard");
             }
             
@@ -61,8 +62,9 @@ const LoginPage = () => {
                             className="w-80 p-3 rounded border-2 border-[#0AC1C9]"
                         />
 
-                        {/* <a href="#" className="text-[#0AC1C9] ml-auto">Forgot Password?</a> */}
+                        <Link className="text-[#0AC1C9] ml-auto" to="/forgotpassword">Forgot Password?</Link>
                         <button
+
                             className="w-80 p-3 rounded bg-[#0AC1C9] text-white font-semibold hover:bg-[#24d8e2] transition-all duration-200 ease-in"
                             onClick={loginSubmit}>
                             Login

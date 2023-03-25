@@ -17,26 +17,29 @@ const db = mysql.createConnection({
     database: process.env.DATABASE,
 });
 
-app.post("/register", (req, res) => {
-    const username = req.body.username;
-    const password = req.body.password;
+// app.post("/register", (req, res) => {
+//     const username = req.body.username;
+//     const password = req.body.password;
 
-    db.query(
-        "INSERT INTO tbl_admin (username, password) VALUES (?, ?)",
-        [username, password],
-        (err, result) => {
-            console.log("DB: " + JSON.stringify(result));
-        }
-    );
-});
+//     db.query(
+//         "INSERT INTO tbl_admin (username, password) VALUES (?, ?)",
+//         [username, password],
+//         (err, result) => {
+//             console.log("DB: " + JSON.stringify(result));
+//         }
+//     );
+// });
+
 
 
 app.post('/login', function (req, res) {
     const username = req.body.username;
     const password = req.body.password;
 
+    const queryAdminLogin = "SELECT adminID, username FROM tbl_admin WHERE username = ? AND password = ?";
+
     db.query(
-        "SELECT adminID FROM tbl_admin WHERE username = ? AND password = ?",
+        queryAdminLogin,
         [username, password],
         (err, result) => {
             if (err) {
@@ -49,7 +52,6 @@ app.post('/login', function (req, res) {
                         status: 200,
                         message: result
                     });
-                    console.log("");
                 }
                 else {
                     res.send({ error: "WRONG DETAILS" })
@@ -85,7 +87,6 @@ app.get('/patientsdata', (req, res) => {
 
 app.get('/verify/:id', (req, res) => {
     const id = req.params.id;
-
     db.query(
         "SELECT * FROM tbl_admin WHERE adminID = ?",
         [id],
@@ -96,7 +97,6 @@ app.get('/verify/:id', (req, res) => {
             else {
                 if (result.length > 0) {
                     return res.send({ message: "verified" });
-
                 } else {
                     return res.send({
                         status: 404,
@@ -104,13 +104,12 @@ app.get('/verify/:id', (req, res) => {
                     })
                 }
             }
-
         }
     )
-    console.log(id)
 })
-app.get('/', (req, res) => {
 
+
+app.get('/', (req, res) => {
     db.query(
         "SELECT * FROM tbl_admin ",
         (err, result) => {
@@ -122,12 +121,11 @@ app.get('/', (req, res) => {
                     status: 404,
                     message: result
                 })
-
             }
         }
     )
 })
 
 app.listen("3001", () => {
-    console.log("3001");
+    console.log("Connected to 3001");
 })

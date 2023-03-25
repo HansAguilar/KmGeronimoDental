@@ -33,7 +33,6 @@ const Admin = () => {
                     <SideBar />
                 </div>
 
-
             </div>
             <table>
                 <thead>

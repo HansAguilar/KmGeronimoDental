@@ -12,6 +12,7 @@ import Patients from './views/Patients';
 import Appointments from './views/Appointments';
 import Admin from './views/Admin';
 import PageNotFound from './views/PageNotFound';
+import ForgotPassword from './views/ForgotPassword';
 
 
 function App() {
@@ -22,6 +23,8 @@ function App() {
 					<Routes>
 						{/* initial page */}
 						<Route element={<LoginPage />} path='/' />
+
+						<Route element={<ForgotPassword />} path='/forgotpassword' />
 
 						{/* protect these routes */}
 						<Route element={<ProtectedRoutes />}>

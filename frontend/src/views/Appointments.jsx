@@ -1,30 +1,11 @@
-import Axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import useFetch from '../api/useFetch';
 import Header from '../components/Header';
 import SideBar from '../components/SideBar';
 
 const Appointments = () => {
-    const [patientsData, setPatientsData] = useState([]); //^ Data comes from backend. (Patients TABLE data)
+    const {loading, usersData} = useFetch("http://localhost:3001/patientsdata"); //^ get patients data
 
-    const getPatientsData = async () => {
-        try {
-            const response = await Axios.get("http://localhost:3001/patientsdata"); //^ Patients JSON data (ENDPOINT)
-            return response.data; //^ Data property of the response object. OUTPUTS: 
-        } catch (error) {
-            console.error(error);
-            return null;
-        }
-    };
-
-    useEffect(() => {
-        const fetchData = async () => { //^ fetchData asynchronous function. 
-            const data = await getPatientsData(); //^ wait the getPatientData function result
-            setPatientsData(data); //^ Ilagay yung data variable sa useState 
-            console.log(data);
-        };
-        fetchData(); //^ call fetchData
-    }, []);
-
+    if(loading) return <h1 className='text-2xl font-semibold'>Loading...</h1>
 
     return (
         <>
@@ -53,7 +34,7 @@ const Appointments = () => {
                         </thead>
                         <tbody>
                             {
-                                patientsData.map(patient => (
+                                usersData.map(patient => (
                                     <tr className="bg-gray-100 hover:bg-gray-200" key={patient.patientID}>
                                         <td className="p-3">{patient.firstname} {patient.lastname}</td>
                                         <td className="p-3">{patient.appointmentDate} | {patient.appointmentTime}</td>
