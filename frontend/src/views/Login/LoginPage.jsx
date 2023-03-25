@@ -38,9 +38,9 @@ const LoginPage = () => {
     return (
         <>
             <Header />
-            <main className="w-2/4 m-auto flex items-center justify-center">
-                <section className="gap-6">
-                    <h1 className="font-semibold text-center text-5xl my-7">Sign In</h1>
+            <main className="h-[calc(100vh_-_3.5rem)] w-3/12 m-auto flex items-center justify-center ">
+                <section className="gap-6 w-full shadow-md p-6">
+                    <h1 className="font-semibold text-center text-3xl my-6">Sign In</h1>
                     <p className={showError ? 'text-red-400' : ''}>{showError && "NO account found"}</p>
                     <div className="flex items-center justify-center flex-col gap-6">
                         <input
@@ -50,7 +50,7 @@ const LoginPage = () => {
                             onChange={(e) => {
                                 setUsername(e.target.value);
                             }}
-                            className="w-80 p-3 rounded border-2 border-[#0AC1C9]"
+                            className="w-full outline-none px-4 py-2 rounded-md border border-[#0AC1C9] focus:bg-sky-100 transition-all delay-75 ease-in"
                         />
                         <input
                             type="password"
@@ -59,13 +59,12 @@ const LoginPage = () => {
                             onChange={(e) => {
                                 setPassword(e.target.value);
                             }}
-                            className="w-80 p-3 rounded border-2 border-[#0AC1C9]"
+                            className="w-full outline-none px-4 py-2 rounded-md border border-[#0AC1C9] focus:bg-sky-100 transition-all delay-75 ease-in"
                         />
 
                         <Link className="text-[#0AC1C9] ml-auto" to="/forgotpassword">Forgot Password?</Link>
                         <button
-
-                            className="w-80 p-3 rounded bg-[#0AC1C9] text-white font-semibold hover:bg-[#24d8e2] transition-all duration-200 ease-in"
+                            className="w-full p-3 rounded bg-[#0AC1C9] text-white font-semibold hover:bg-[#24d8e2] transition-all duration-200 ease-in outline-none "
                             onClick={loginSubmit}>
                             Login
                         </button>
