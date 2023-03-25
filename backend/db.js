@@ -17,18 +17,18 @@ const db = mysql.createConnection({
     database: process.env.DATABASE,
 });
 
-// app.post("/register", (req, res) => {
-//     const username = req.body.username;
-//     const password = req.body.password;
+app.post("/register", (req, res) => {
+    const username = req.body.username;
+    const password = req.body.password;
 
-//     db.query(
-//         "INSERT INTO tbl_admin (username, password) VALUES (?, ?)",
-//         [username, password],
-//         (err, result) => {
-//             console.log("DB: " + JSON.stringify(result));
-//         }
-//     );
-// });
+    db.query(
+        "INSERT INTO tbl_admin (username, password) VALUES (?, ?)",
+        [username, password],
+        (err, result) => {
+            console.log("DB: " + JSON.stringify(result));
+        }
+    );
+});
 
 
 app.post('/login', function (req, res) {
@@ -59,6 +59,30 @@ app.post('/login', function (req, res) {
     );
 });
 
+
+app.get('/patientsdata', (req, res) => {
+    const queryPatientsData = `SELECT 
+                                    a.*, 
+                                    DATE_FORMAT(a.appointmentDate, '%Y-%m-%d') AS appointmentDate, 
+                                    DATE_FORMAT(appointmentTime, '%h:%i %p') AS appointmentTime, 
+                                    p.firstname, 
+                                    p.lastname, 
+                                    pm.paymentStatus, 
+                                    pm.paymentType 
+                                FROM 
+                                    tbl_appointments a 
+                                    JOIN tbl_patient p ON a.patientID = p.patientID 
+                                    JOIN tbl_payments pm ON a.patientID = pm.patientID;
+                                `; //^ Appointment QUERY
+    db.query(
+        queryPatientsData,
+        (err, result) => {
+            return res.send(result);
+        }
+    )
+})
+
+
 app.get('/verify/:id', (req, res) => {
     const id = req.params.id;
 
@@ -70,7 +94,7 @@ app.get('/verify/:id', (req, res) => {
                 res.send(err.sqlMessage);
             }
             else {
-                if (result.length > 0 ) {
+                if (result.length > 0) {
                     return res.send({ message: "verified" });
 
                 } else {
@@ -95,13 +119,15 @@ app.get('/', (req, res) => {
             }
             else {
                 return res.send({
-                        status: 404,
-                        message: result
+                    status: 404,
+                    message: result
                 })
 
+            }
         }
-    }
     )
 })
 
-app.listen("3001")
+app.listen("3001", () => {
+    console.log("3001");
+})

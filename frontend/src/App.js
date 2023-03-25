@@ -11,29 +11,34 @@ import Settings from './views/Settings';
 import Patients from './views/Patients';
 import Appointments from './views/Appointments';
 import Admin from './views/Admin';
+import PageNotFound from './views/PageNotFound';
+
 
 function App() {
-  return (
-    <Router>
-      <div className="App box-border antialiased">
-        <header className="App-header">
-          <Routes>
-            <Route element={<LoginPage />} path='/' />
-            
-            <Route element={<ProtectedRoutes />}>
-              <Route element={<Dashboard />} path='/dashboard'/>
-              <Route element={<Appointments />} path='/appointments'/>
-              <Route element={<Messages />} path='/messages'/>
-              <Route element={<Admin />} path='/admin'/>
-              <Route element={<Patients />} path='/patients'/>
-              <Route element={<Calendar />} path='/calendar'/>
-              <Route element={<Settings />} path='/settings'/>
-            </Route>
-          </Routes>
-        </header>
-      </div>
-    </Router>
-  );
+	return (
+		<Router>
+			<div className="App box-border antialiased">
+				<header className="App-header">
+					<Routes>
+						{/* initial page */}
+						<Route element={<LoginPage />} path='/' />
+
+						{/* protect these routes */}
+						<Route element={<ProtectedRoutes />}>
+							<Route element={<Dashboard />} path='/dashboard' />
+							<Route element={<Appointments />} path='/appointments' />
+							<Route element={<Messages />} path='/messages' />
+							<Route element={<Admin />} path='/admin' />
+							<Route element={<Patients />} path='/patients' />
+							<Route element={<Calendar />} path='/calendar' />
+							<Route element={<Settings />} path='/settings' />
+							<Route element={<PageNotFound />} path="*" />
+						</Route>
+					</Routes>
+				</header>
+			</div>
+		</Router>
+	);
 }
 
 export default App;
