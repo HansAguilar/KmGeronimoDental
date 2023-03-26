@@ -1,6 +1,6 @@
 import React from 'react'
 import Header from '../components/Header'
-import SideBar from '../components/SideBar'
+import SideBar from '../components/Sidebar'
 
 import notFound404Img from '../assets/images/page404.svg';
 import { Link, NavLink } from 'react-router-dom';

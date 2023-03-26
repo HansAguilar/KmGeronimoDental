@@ -4,6 +4,7 @@ import Dashboard from './views/Dashboard';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import ProtectedRoutes from './utils/ProtectedRoutes';
 
+
 // pages
 import Messages from './views/Messages';
 import Calendar from './views/Calendar';
@@ -24,8 +25,9 @@ function App() {
 						<Route element={<LoginPage />} path='/' />
 
 						{/* protect these routes */}
+						
 						<Route element={<ProtectedRoutes />}>
-							<Route element={<Dashboard />} path='/dashboard' />
+							<Route element= {<Dashboard />} path='/dashboard' />
 							<Route element={<Appointments />} path='/appointments' />
 							<Route element={<Messages />} path='/messages' />
 							<Route element={<Admin />} path='/admin' />
@@ -34,6 +36,7 @@ function App() {
 							<Route element={<Settings />} path='/settings' />
 							<Route element={<PageNotFound />} path="*" />
 						</Route>
+
 					</Routes>
 				</header>
 			</div>

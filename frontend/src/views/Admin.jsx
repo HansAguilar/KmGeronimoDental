@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Header from '../components/Header';
-import SideBar from '../components/SideBar';
+import SideBar from '../components/Sidebar';
 import axios from 'axios';
 
 const Admin = () => {

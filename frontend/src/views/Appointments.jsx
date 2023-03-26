@@ -1,7 +1,7 @@
 import Axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import Header from '../components/Header';
-import SideBar from '../components/SideBar';
+import SideBar from '../components/Sidebar';
 
 const Appointments = () => {
     const [patientsData, setPatientsData] = useState([]); //^ Data comes from backend. (Patients TABLE data)
