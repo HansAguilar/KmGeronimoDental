@@ -67,8 +67,8 @@ app.get('/patientsdata', (req, res) => {
                                     a.*, 
                                     DATE_FORMAT(a.appointmentDate, '%Y-%m-%d') AS appointmentDate, 
                                     DATE_FORMAT(appointmentTime, '%h:%i %p') AS appointmentTime, 
-                                    p.firstname, 
-                                    p.lastname, 
+                                    p.*,
+                                    DATE_FORMAT(p.birthday, '%Y-%m-%d') AS birthday, 
                                     pm.paymentStatus, 
                                     pm.paymentType 
                                 FROM 

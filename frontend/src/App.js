@@ -28,7 +28,7 @@ function App() {
 
 						{/* protect these routes */}
 						<Route element={<ProtectedRoutes />}>
-							<Route element={<Dashboard />} path='/dashboard' />
+							<Route element={<Dashboard />} path='/dashboard'/>
 							<Route element={<Appointments />} path='/appointments' />
 							<Route element={<Messages />} path='/messages' />
 							<Route element={<Admin />} path='/admin' />
