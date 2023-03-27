@@ -13,6 +13,7 @@ import Appointments from './views/Appointments';
 import Admin from './views/Admin';
 import PageNotFound from './views/PageNotFound';
 import ForgotPassword from './views/ForgotPassword';
+import Announcement from './views/Announcement';
 
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
 							<Route element={<Admin />} path='/admin' />
 							<Route element={<Patients />} path='/patients' />
 							<Route element={<Calendar />} path='/calendar' />
+							<Route element={<Announcement />} path='/announcement' />
 							<Route element={<Settings />} path='/settings' />
 							<Route element={<PageNotFound />} path="*" />
 						</Route>
