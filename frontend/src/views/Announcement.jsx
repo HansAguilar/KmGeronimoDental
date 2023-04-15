@@ -1,7 +1,8 @@
 import React from "react";
+import useFetch from '../api/useFetch';
 import Header from "../components/Header";
 import SideBar from "../components/SideBar";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const Announcement = () => {
   const [announcements, setAnnouncements] = useState([]);
@@ -13,8 +14,15 @@ const Announcement = () => {
     description: "",
     duration: "",
   });
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const data = await useFetch('localhost');
+  //     setAnnouncements(data);
+  //   };
+  //   fetchData();
+  // }, []);
 
-  function handleSubmit(event) {
+    function handleSubmit(event) {
     event.preventDefault();
     const announcement = {
       id: Date.now(),
@@ -95,7 +103,6 @@ const Announcement = () => {
         <div className="p-4 w-full">
           <h1 className="text-2xl font-semibold">Announcement</h1>
           <div className="bg-gray-200 p-4 rounded-md">
-            <h2 className="text-lg font-medium mb-4">Announcements</h2>
             {!isEditing && (
               <form onSubmit={handleSubmit}>
                 <label className="block mb-2 font-medium">Title:</label>
